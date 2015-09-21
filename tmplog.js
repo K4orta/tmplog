@@ -7,7 +7,6 @@ var device = devices[0];
 
 fs.readFile(path.join(basePath, device, 'w1_slave'), function(err, readOut) {
   var rawTempString = String(readOut).match(/t=\d*/)[0].replace('t=', '');
-  console.log(rawTempString);
   var temp = cToF(parseFloat( rawTempString ) / 1000);
   console.log(temp);
 });
