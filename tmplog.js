@@ -6,7 +6,7 @@ var devices = fs.readdirSync(basePath);
 var device = devices[0];
 
 fs.readFile(path.join(basePath, device, 'w1_slave'), function(err, readOut) {
-  var temp = cToF(readOut.match(/t=\d*/)[0].replace('t=', ''));
+  var temp = cToF(String(readOut).match(/t=\d*/)[0].replace('t=', ''));
   console.log(temp);
 });
 
