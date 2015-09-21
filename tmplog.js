@@ -1,17 +1,10 @@
-var raspi = require('raspi-io');
-var five = require('johnny-five');
-var board = new five.Board({
-  io: new raspi()
-});
+var fs = require('fs');
+var path = require('path');
 
-board.on('ready', function() {
-  var temperature = new five.Temperature({
-    contoller: 'TMP36',
-    pin: 'GPIO22'
-  });
+var basePath = '/sys/bus/w1/devices';
+var devices = fs.readDirSync(basePath);
+var device = devices[0];
 
-  var sensor = new five.Sensor('GPIO22');
-  temperature.on('data', function() {
-    console.log(this.celsius + "°C", this.fahrenheit + "°F");
-  });
+fs.readFile(path.join(basePath, device), function(err, tmp) {
+  console.log(temp);
 });
